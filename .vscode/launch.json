@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Kubernetes: Run/Debug",
+            "type": "cloudcode.kubernetes",
+            "request": "launch",
+            "skaffoldConfig": "${workspaceFolder}\\skaffold.yaml",
+            "imageRegistry": "gcr.io/rb-munish-playground",
+            "watch": true,
+            "cleanUp": true,
+            "portForward": true
+        }
+    ]
+}

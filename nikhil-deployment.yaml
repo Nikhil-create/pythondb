@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nikhil
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pythondb-nikhil
+  template:
+    metadata:
+      labels:
+        app: pythondb-nikhil
+    spec:
+      serviceAccountName: nikhil
+      containers:
+      - name: pythondb-container
+        image: gcr.io/rb-munish-playground/img-pythondb:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: "127.0.0.1:5432"
+        - name: DB_PORT
+          value: "5432"
+        - name: PORT
+          value: "8080"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: dbsecret
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: dbsecret
+              key: DB_PASS
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: dbsecret
+              key: DB_NAME
+        - name: CLOUD_SQL_CONNECTION_NAME
+          value: "rb-munish-playground:us-central1:dev-postgres"
+      - name: cloud-sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:latest
+        command:
+          - "/cloud_sql_proxy"
+          - "-instances=rb-munish-playground:us-central1:dev-postgres=tcp:5432"
+      - name: gloud-sdk-debug
+        image: docker.io/octopop/gcp-cloudsdk-loaded:latest
+        command: ["sleep","infinity"]

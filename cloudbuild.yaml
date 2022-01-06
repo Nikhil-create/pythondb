@@ -1,0 +1,30 @@
+# Cloud Run Build YAML
+# Demo a change
+
+#Build Docker image
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      ["build", "-t", "gcr.io/$PROJECT_ID/img-pythondb:latest", "."]
+    dir: 'apps/pythondb'
+
+#Push Docker Image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/img-pythondb:latest"]
+    dir: 'apps/pythondb'
+
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "cloudrun-pythondb",
+        "--image",
+        "gcr.io/$PROJECT_ID/img-pythondb:latest",
+        "--region",
+        "us-west1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+      ]
