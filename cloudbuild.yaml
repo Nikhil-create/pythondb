@@ -10,7 +10,7 @@ steps:
 
 #Push Docker Image
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/$PROJECT_ID/img-pythondb:latest"]
+    args: ["push", "gcr.io/$PROJECT_ID/img-pythondb"]
 
 
 
