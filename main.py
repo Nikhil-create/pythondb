@@ -147,9 +147,9 @@ def create_tables():
             "candidate VARCHAR(6) NOT NULL, PRIMARY KEY (vote_id) );"
         )
 
-@app.route('/pythondb/starwars', methods=['GET'])
+@app.route('/pythondb/nikhil', methods=['GET'])
 def starwars():
-    return "Luke and Darthvader might be related ..."
+    return "Its Working"
 
 @app.route('/pythondb', methods=['GET'])
 def index():
@@ -235,7 +235,7 @@ def save_vote():
 # Catch all to print back a route user requested
 @app.route('/<path:path>')
 def catch_all(path):
-    return 'pythondb: You requested the path: /%s' % path
+    return 'Its Working: /%s' % path
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
