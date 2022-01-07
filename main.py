@@ -149,7 +149,7 @@ def create_tables():
 
 @app.route('/pythondb/nikhil', methods=['GET'])
 def starwars():
-    return "Its Working"
+    return "Its Working fine"
 
 @app.route('/pythondb', methods=['GET'])
 def index():
