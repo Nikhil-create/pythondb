@@ -3,7 +3,7 @@
 
 #Build Docker image
 steps:
-  - name: gcr.io/cloud-builders/docker
+  - name: "gcr.io/cloud-builders/docker"
     args:
       ["build", "-t", "gcr.io/$PROJECT_ID/img-pythondb:latest", "."]
     dir: '.'
@@ -11,7 +11,7 @@ steps:
 #Push Docker Image
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/img-pythondb:latest"]
-    dir: '.'
+
 
 
   - name: "gcr.io/cloud-builders/gcloud"
