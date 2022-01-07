@@ -12,8 +12,6 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/img-pythondb"]
 
-
-
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
@@ -28,5 +26,9 @@ steps:
         "managed",
         "--allow-unauthenticated",
       ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/img-pythondb'
+
 options:
   logging: CLOUD_LOGGING_ONLY
