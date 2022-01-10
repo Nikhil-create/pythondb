@@ -151,6 +151,10 @@ def create_tables():
 def starwars():
     return "Its Working fine"
 
+@app.route('/', methods=['GET'])
+def starwars2():
+    return "Project Started"
+
 @app.route('/pythondb', methods=['GET'])
 def index():
     context = get_index_context()
