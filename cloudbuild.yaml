@@ -20,5 +20,3 @@ steps:
     - --location=us-central1-c
     - --cluster=private-cluster
 
-options:
-  logging: CLOUD_LOGGING_ONLY
