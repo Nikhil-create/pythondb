@@ -12,20 +12,13 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/img-pythondb:latest"]
 
-  - name: "gcr.io/cloud-builders/gcloud"
+  - name: "gcr.io/cloud-builders/gke-deploy"
     args:
-      [
-        "run",
-        "deploy",
-        "cloudrun-pythondb",
-        "--image",
-        "gcr.io/$PROJECT_ID/img-pythondb:latest",
-        "--region",
-        "us-west1",
-        "--platform",
-        "managed",
-        "--allow-unauthenticated",
-      ]
+    - run
+    - --filename=nikhil-deployment.yaml
+    - --image= gcr.io/$PROJECT_ID/img-pythondb:latest
+    - --location=us-central1-c
+    - --cluster=private-cluster
 
 options:
   logging: CLOUD_LOGGING_ONLY
