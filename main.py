@@ -153,7 +153,7 @@ def starwars():
 
 @app.route('/', methods=['GET'])
 def starwars2():
-    return "Project Started"
+    return "Project Started By Nikhil and Shivam"
 
 @app.route('/pythondb', methods=['GET'])
 def index():
