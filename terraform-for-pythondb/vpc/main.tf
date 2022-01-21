@@ -4,7 +4,7 @@ resource "google_compute_network" "private_vpc_network" {
   name = var.vpc-network-name
   project = var.project-name
   description = "VPC network By Nikhil Rawal"
-  routing_mode = "GLOBAL"
+  routing_mode = "REGIONAL"
   auto_create_subnetworks = false 
 }
 
@@ -30,4 +30,6 @@ resource "google_compute_subnetwork" "private_vpc_subnetwork"{
 
 
 }
+
+
 
