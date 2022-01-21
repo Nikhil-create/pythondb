@@ -12,7 +12,8 @@ resource "google_compute_network" "private_vpc_network" {
 
 #Creating Subnet for VPC
 resource "google_compute_subnetwork" "private_vpc_subnetwork"{
-  name = var.subnetwork-name
+  for_each = var.name-map-private-vpc
+  name = "${each.key}-subnet"
   ip_cidr_range =  var.ip-range-for-private-subnetwork
   network= google_compute_network.private_vpc_network[each.key].id
   region= var.gcp-region

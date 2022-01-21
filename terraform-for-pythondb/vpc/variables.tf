@@ -4,7 +4,7 @@ variable "name-map-private-vpc" {
   description="Name Map for VPC" 
 }
 
-variable "region-or-global" {
+variable "regional-or-global" {
   type=string
   description = "By Default region-or-global is REGIONAL"
   default = "REGIONAL"
@@ -15,10 +15,8 @@ variable "project-name" {
     description = "Project name"
 }
 
-variable "vpc-network-name" {
-    type= string
-    description = "VPC Network name"
-}
+
+
 
 variable "subnetwork-name" {
     type= string

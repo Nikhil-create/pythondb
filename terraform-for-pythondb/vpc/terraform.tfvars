@@ -10,7 +10,7 @@ gcp-region= "us-central1"
 
 name-map-private-vpc={
     vpc1 = "private-vpc-by-nikhil"
-    vpc2 = "another-vpc-by-nikhil"
+    vpc2 = "another-vpc-by-nikhilrawal"
 }
 
 regional-or-global= "GLOBAL"
