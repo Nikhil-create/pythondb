@@ -1,5 +1,16 @@
 project-name= "rb-munish-playground"
-vpc-network-name= "vpc-by-nikhil"
 subnetwork-name= "subnetwork-by-nikhil"
 ip-range-for-private-subnetwork= "10.0.0.0/24"
 gcp-region= "us-central1"
+
+
+
+
+
+
+name-map-private-vpc={
+    vpc1 = "private-vpc-by-nikhil"
+    vpc2 = "another-vpc-by-nikhil"
+}
+
+regional-or-global= "GLOBAL"

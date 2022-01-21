@@ -1,11 +1,12 @@
 #Creating VPC Network
 resource "google_compute_network" "private_vpc_network" {
 
-  name = var.vpc-network-name
+  for_each = var.name-map-private-vpc
+  name = each.value 
   project = var.project-name
   description = "VPC network By Nikhil Rawal"
-  routing_mode = "REGIONAL"
-  auto_create_subnetworks = false 
+  routing_mode = var.regional-or-global
+  auto_create_subnetworks = false
 }
 
 
@@ -15,6 +16,7 @@ resource "google_compute_subnetwork" "private_vpc_subnetwork"{
   ip_cidr_range =  var.ip-range-for-private-subnetwork
   network= google_compute_network.private_vpc_network.id
   region= var.gcp-region
+  project = var.project-name
 
   private_ip_google_access = true
 
@@ -27,7 +29,6 @@ resource "google_compute_subnetwork" "private_vpc_subnetwork"{
   depends_on = [
     google_compute_network.private_vpc_network
   ]
-
 
 }
 
