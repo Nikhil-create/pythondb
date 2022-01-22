@@ -1,7 +1,7 @@
 #--Service Account IDs
 variable "name" {
     type= map(string)
-    describe= "Service Account IDs"
+    description= "Service Account IDs"
 }
 
 #--Project name
