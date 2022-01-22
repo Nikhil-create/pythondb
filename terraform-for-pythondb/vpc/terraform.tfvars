@@ -13,6 +13,6 @@ regional-or-global= "GLOBAL"
 #--You Can Create Multiple VPCs
 name-map-private-vpc={
     vpc1 = "private-vpc-by-nikhil"
-    vpc2 = "another-vpc-by-nikhilrawal"
+    #vpc2 = "another-vpc-by-nikhilrawal"
 }
 
