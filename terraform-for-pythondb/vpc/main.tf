@@ -82,11 +82,6 @@ resource "google_compute_firewall" "icmp" {
      ports    = ["22"]
    }
 
-  log_config {
-    enable = true
-    filter = "ERRORS_ONLY"
-  }
-
   target_tags   = ["${each.key}-firewall-icmp"]
   source_ranges = ["0.0.0.0/0"]
 }
