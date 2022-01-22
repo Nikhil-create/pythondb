@@ -66,7 +66,7 @@ resource "google_compute_router_nat" "nat" {
 }
 
 #--firewall for VPC
-resource "google_compute_firewall" "icmp" {
+resource "google_compute_firewall" "ssh-rule" {
   for_each = var.name-map-private-vpc
   project = var.project-name
   name    = "${each.key}-firewall-icmp"
@@ -74,17 +74,17 @@ resource "google_compute_firewall" "icmp" {
   direction   = "INGRESS"
 
   allow {
-    protocol = "icmp"
-  }
-
-  allow {
      protocol = "tcp"
      ports    = ["22"]
    }
 
-  target_tags   = ["icmp"]
+  target_tags   = ["ssh-vm"]
   source_ranges = ["0.0.0.0/0"]
 }
+
+
+
+
 
 
 
