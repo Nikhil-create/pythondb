@@ -63,6 +63,7 @@ resource "google_compute_router_nat" "nat" {
     enable = true
     filter = "ERRORS_ONLY"
   }
+}
 
 #--firewall for VPC
 resource "google_compute_firewall" "icmp" {
@@ -81,11 +82,16 @@ resource "google_compute_firewall" "icmp" {
      ports    = ["22"]
    }
 
+  log_config {
+    enable = true
+    filter = "ERRORS_ONLY"
+  }
+
   target_tags   = ["${var.each}-firewall-icmp"]
   source_ranges = ["0.0.0.0/0"]
 }
 
-}
+
 
 
 
