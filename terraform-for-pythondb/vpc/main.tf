@@ -33,7 +33,8 @@ resource "google_compute_subnetwork" "private_vpc_subnetwork"{
 
 }
 
-#--Compute Router Encrypted Interconnect
+#--Compute Router Encrypted Interconnect(DOUBT)
+#--Compute Router Interconnect
 resource "google_compute_router" "router" {
   for_each = var.name-map-private-vpc
   project = var.project-name
@@ -41,7 +42,7 @@ resource "google_compute_router" "router" {
   region= google_compute_subnetwork.private_vpc_subnetwork[each.key].region
   network= google_compute_network.private_vpc_network[each.key].id 
 
-  encrypted_interconnect_router = true
+  #encrypted_interconnect_router = true
 
   bgp {
     asn = 64514
@@ -61,7 +62,7 @@ resource "google_compute_router_nat" "nat" {
     enable = true
     filter = "ERRORS_ONLY"
   }
-  
+
 }
 
 
