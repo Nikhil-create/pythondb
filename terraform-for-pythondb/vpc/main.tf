@@ -52,6 +52,7 @@ resource "google_compute_router" "router" {
 #--Creating NAT for Secure Internet Connection
 resource "google_compute_router_nat" "nat" {
   for_each = var.name-map-private-vpc
+  project = var.project-name
   name= "vpc-nat-${each.key}"
   router= google_compute_router.router[each.key].name
   region= google_compute_router.router[each.key].region 
