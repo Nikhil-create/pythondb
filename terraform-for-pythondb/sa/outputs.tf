@@ -1,5 +1,5 @@
 output "name" {
-    describe= "Service Account IDs"
+    description= "Service Account IDs"
     value=var.name
 }
 
