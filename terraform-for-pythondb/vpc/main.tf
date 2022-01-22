@@ -70,7 +70,7 @@ resource "google_compute_firewall" "icmp" {
   for_each = var.name-map-private-vpc
   project = var.project-name
   name    = "${each.key}-firewall-icmp"
-  network= google_compute_network.private_vpc_network[each.key].id
+  network= google_compute_network.private_vpc_network[each.key].name
   direction   = "INGRESS"
 
   allow {
