@@ -64,6 +64,27 @@ resource "google_compute_router_nat" "nat" {
     filter = "ERRORS_ONLY"
   }
 
+#--firewall for VPC
+resource "google_compute_firewall" "icmp" {
+  for_each = var.name-map-private-vpc
+  project = var.project-name
+  name    = "${each.key}-firewall-icmp"
+  network= google_compute_network.private_vpc_network[each.key].id
+  direction   = "INGRESS"
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+     protocol = "tcp"
+     ports    = ["22"]
+   }
+
+  target_tags   = ["${var.each}-firewall-icmp"]
+  source_ranges = ["0.0.0.0/0"]
+}
+
 }
 
 
