@@ -87,7 +87,7 @@ resource "google_compute_firewall" "icmp" {
     filter = "ERRORS_ONLY"
   }
 
-  target_tags   = ["${var.each}-firewall-icmp"]
+  target_tags   = ["${each.key}-firewall-icmp"]
   source_ranges = ["0.0.0.0/0"]
 }
 
