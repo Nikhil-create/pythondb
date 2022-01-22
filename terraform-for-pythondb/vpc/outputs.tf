@@ -13,11 +13,6 @@ output "regional-or-global" {
   value= var.regional-or-global
 }
 
-output "subnetwork-name" {
-    description= "SubNetwork Name"
-    value = var.subnetwork-name
-}
-
 output "ip-range-for-private-subnetwork" {
   description = "IP for private subnetwork"
   value= var.ip-range-for-private-subnetwork
