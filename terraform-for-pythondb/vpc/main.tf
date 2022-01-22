@@ -79,10 +79,10 @@ resource "google_compute_firewall" "icmp" {
 
   allow {
      protocol = "tcp"
-     ports    = ["22","8080", "1000-2000"]
+     ports    = ["22"]
    }
 
-  target_tags   = ["${each.key}-firewall-icmp"]
+  target_tags   = ["icmp"]
   source_ranges = ["0.0.0.0/0"]
 }
 
