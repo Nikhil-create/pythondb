@@ -1,4 +1,4 @@
-#Creating VPC Network
+#--Creating VPC Network
 resource "google_compute_network" "private_vpc_network" {
 
   for_each = var.name-map-private-vpc
@@ -10,7 +10,7 @@ resource "google_compute_network" "private_vpc_network" {
 }
 
 
-#Creating Subnet for VPC
+#--Creating Subnet for VPC
 resource "google_compute_subnetwork" "private_vpc_subnetwork"{
   for_each = var.name-map-private-vpc
   name = "${each.key}-subnet"
@@ -31,6 +31,37 @@ resource "google_compute_subnetwork" "private_vpc_subnetwork"{
     google_compute_network.private_vpc_network
   ]
 
+}
+
+#--Compute Router Encrypted Interconnect
+resource "google_compute_router" "router" {
+  for_each = var.name-map-private-vpc
+  project = var.project-name
+  name= "vpc-router-${each.key}"
+  region= google_compute_subnetwork.private_vpc_subnetwork[each.key].region
+  network= google_compute_network.private_vpc_network[each.key].id 
+
+  encrypted_interconnect_router = true
+
+  bgp {
+    asn = 64514
+  }
+}
+
+#--Creating NAT for Secure Internet Connection
+resource "google_compute_router_nat" "nat" {
+  for_each = var.name-map-private-vpc
+  name= "vpc-nat-${each.key}"
+  router= google_compute_router.router[each.key].name
+  region= google_compute_router.router[each.key].region 
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+
+  log_config {
+    enable = true
+    filter = "ERRORS_ONLY"
+  }
+  
 }
 
 
